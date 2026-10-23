@@ -1,0 +1,119 @@
+/* ===== TASK 1: Base styles (consistent fonts, readable text, accessibility) ===== */
+:root {
+  --pitch: #0b2a5b;      /* deep navy blue */
+  --pitch-light: #1e6fd9;
+  --ball: #c1121f;       /* cricket-ball red */
+  --cream: #eaf2fc;      /* light sky blue */
+  --text: #1f2933;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: #fff;
+}
+
+.container { width: min(1100px, 92%); margin: 0 auto; }
+img { max-width: 100%; display: block; }
+a:focus-visible, .btn:focus-visible { outline: 3px solid var(--ball); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: #fff; color: #000; padding: 8px 14px; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* ===== TASK 2: Header and navigation ===== */
+.site-header {
+  background: var(--pitch);
+  position: sticky; top: 0; z-index: 50;
+  border-bottom: 4px solid var(--ball);
+}
+.header-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0;
+}
+.logo { font-size: 1.6rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: 1px; }
+.logo span { color: #7fb3ff; }
+
+.nav-list { list-style: none; display: flex; gap: 8px; }
+.nav-list a {
+  display: block; padding: 8px 16px; border-radius: 6px;
+  color: #fff; text-decoration: none; font-weight: 500;
+  transition: background 0.2s;
+}
+.nav-list a:hover { background: var(--pitch-light); }      /* hover colour */
+.nav-list a.active { background: var(--ball); }            /* current page */
+
+/* ===== TASK 3: Hero section ===== */
+.hero {
+  background: url("https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1600&q=60")
+              center / cover no-repeat, var(--pitch);   /* blue shows if image fails */
+}
+.hero-overlay {
+  min-height: 80vh;
+  background: rgba(11, 42, 91, 0.72);   /* dark blue overlay keeps white text readable */
+  display: flex; align-items: center;
+}
+.hero-content { color: #fff; max-width: 740px; margin-left: 4%; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); line-height: 1.15; margin-bottom: 16px; }
+.hero p { font-size: 1.2rem; margin-bottom: 28px; }
+
+.btn {
+  display: inline-block; padding: 14px 32px;
+  background: var(--ball); color: #fff;          /* red ball colour pops on dark blue */
+  font-weight: 700; text-decoration: none; border-radius: 8px;
+  transition: transform 0.2s, background 0.2s;
+}
+.btn:hover { background: #fff; color: var(--ball); transform: translateY(-2px); }
+
+/* ===== TASK 4: About and Highlights sections ===== */
+.section { padding: 80px 0; }
+.section-alt { background: var(--cream); }
+.section h2 { font-size: 2rem; color: var(--pitch); margin-bottom: 16px; }
+.center { text-align: center; margin-bottom: 40px !important; }
+
+/* About: two columns */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.about-grid img { border-radius: 10px; }
+.about-grid p { margin-bottom: 14px; }
+
+/* Highlights: three cards */
+.card-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.card {
+  background: #fff; padding: 28px; border-radius: 10px;
+  border-top: 4px solid var(--ball);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.card h3 { color: var(--pitch-light); margin-bottom: 10px; }
+
+/* ===== TASK 5: Footer ===== */
+.site-footer {
+  background: var(--pitch); color: #e6eefb; padding: 50px 0 30px;
+  border-top: 4px solid var(--ball);
+}
+.footer-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+.footer-title { font-size: 1.1rem; color: #9ec5ff; margin-bottom: 12px; }
+.site-footer address { font-style: normal; }
+.site-footer a { color: #fff; text-decoration: none; }
+.site-footer a:hover { color: #9ec5ff; text-decoration: underline; }
+.social-list { list-style: none; }
+.social-list li { margin-bottom: 8px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 800px) {
+  .header-inner { flex-direction: column; gap: 10px; }
+  .nav-list { flex-wrap: wrap; justify-content: center; }
+  .about-grid, .card-grid, .footer-grid { grid-template-columns: 1fr; }
+  .section { padding: 56px 0; }
+}
